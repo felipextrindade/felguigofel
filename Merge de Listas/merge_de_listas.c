@@ -1,4 +1,4 @@
- // Felipe Augusto Trindade      RA: 0030481513011
+// Felipe Augusto Trindade      RA: 0030481513011
 // Felipe Siqueira Pinheiro     RA: 0030481513014
 
 #include <stdio.h>
@@ -19,7 +19,7 @@ struct regLista *criarLista()
     while(1)
     {
         printf("Informe o peso e sexo (separados por virgula): ");
-        scanf("%d,%c", &peso, &sexo);
+        scanf("%d, %c", &peso, &sexo);
         if( peso < 0)
             break;
 /* criando uma variável struct regLista dinamicamente */
