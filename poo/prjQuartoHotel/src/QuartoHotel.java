@@ -10,7 +10,7 @@ public class QuartoHotel {
     private boolean situacao;
     private double totalFaturado = 0;
     
-    public  void QuartoHotel(int quarto, double diaria){
+    public QuartoHotel(int quarto, double diaria){
         numQuarto = quarto;
         situacao = false;
         valorDiaria = diaria;

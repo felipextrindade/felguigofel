@@ -12,21 +12,26 @@ public class Aplic {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Scanner entrada = new Scanner (System.in);
-        QuartoHotel objQuarto = new QuartoHotel();
+        
+         Scanner entrada = new Scanner (System.in);
          int numero, opcao;
          int RG, dias;
          double valor, fatura;
+         
          System.out.println("Digite o quarto:");
          numero = entrada.nextInt();
          System.out.println("Digite o valor da diaria:");
          valor = entrada.nextDouble();
-         objQuarto.QuartoHotel(numero, valor);
+         
+         QuartoHotel objQuarto = new QuartoHotel(numero, valor);
+         
          for(;;){
+             
              Menu();
+             
              opcao = entrada.nextInt();
              switch (opcao){
-                 case 1:
+                 case 1://Consultar quarto
                      if (objQuarto.getSituacao()){
                          System.out.println("---Quarto Ocupado!---");
                         }
@@ -34,7 +39,7 @@ public class Aplic {
                          System.out.println("---Quarto Livre!---");
                      }
                      break;
-                 case 2:
+                 case 2://Reservar quarto
                      if (objQuarto.getSituacao()){
                          System.out.println("---Quarto Já Reservado!---");
                         }
@@ -44,21 +49,21 @@ public class Aplic {
                          objQuarto.reservar(RG);
                      }
                      break;
-                 case 3:
+                 case 3://Liberar Quarto
                      if (objQuarto.getSituacao()){
                          System.out.println("Digite a Quantidade de Dias:");
                          dias = entrada.nextInt();
-                         objQuarto.liberar(dias);
+                         System.out.println("---Valor a ser pago: R$" + objQuarto.liberar(dias)+"---");
                         }
                      else{
                          System.out.println("---Quarto Já Livre!---");
                      }
                      break;
-                 case 4:
+                 case 4://Consultar faturamento
                      fatura = objQuarto.getTotalFaturado();
                      System.out.println("---Total faturado: R$" + fatura+" ---");
                      break;
-                 case 5:
+                 case 5://Sair
                      System.exit(0);
                      break;
                  default:
@@ -75,7 +80,7 @@ public class Aplic {
         System.out.println("2 - Reservar Quarto");
         System.out.println("3 - Liberar Quarto");
         System.out.println("4 - Consultar Faturamento");
-        System.out.println("5 - Sair/n/tDigite a Opção:\n\n");
+        System.out.println("5 - Sair\n\tDigite a Opção:\n");
         
     }
     
