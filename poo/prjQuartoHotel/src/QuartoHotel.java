@@ -34,4 +34,7 @@ public class QuartoHotel {
     public boolean getSituacao(){
         return situacao;
     }
+    public int getNumQuarto(){
+        return numQuarto;
+    }
 }
