@@ -28,4 +28,13 @@ public class FuncionarioHorista extends Funcionario {
         return (SalBruto);
     }
 
+    //calculo da gratificação - 7.5% do salario bruto
+    public double calcGratificacao() {
+        return (calcSalBruto() * 0.075);
+    }
+
+    //caculo do salario liquido com gratificação utilizando o calcSalLiquido da super classe funcionario
+    public double calcSalLiquido() {
+        return (super.calcSalLiquido() + calcGratificacao());
+    }
 }
