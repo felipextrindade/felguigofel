@@ -1,27 +1,29 @@
+
 package fatec.poo.model;
 
 /**
  *
- * @author 0030481513020
+ * @author felipe
  */
+//Criação da subclasse Funcionario Mensalista, que herda tudo da classe Funcionario
 public class FuncionarioMensalista extends Funcionario {
-
+    
     private double ValSalMin;
-    private int NumSalMin;
-    //Construtor do mensalista
-    public FuncionarioMensalista(int r, String n, String dta, double vsm) {
-        super(r, n, dta);
-        ValSalMin = vsm;
-    }
-    //receber a quantidade de salarios que recebemos
-    public void apontarSalarios(int nsm) {
+    private double NumSalMin;
+    
+    //Metodo construtor de Funcionario Mensalista
+    public FuncionarioMensalista(int r, String n, String dta, double nsm) {
+        super(r, n, dta); //Chamada ao metodo construtor da Superclasse Funcionario
         NumSalMin = nsm;
     }
-    //Calculo do salario bruto sem gratificação - assinado em funcionario
-    public double calcSalBruto() {
-        double salBruto;
-        salBruto = ValSalMin * NumSalMin;
-        return salBruto;
+    
+    public void apontarValSalMin(double vsm) {
+        ValSalMin = vsm;
     }
-
+    
+    public double calcSalBruto() {
+        double SalBruto;
+        SalBruto = NumSalMin * ValSalMin;
+        return(SalBruto);
+    }
 }

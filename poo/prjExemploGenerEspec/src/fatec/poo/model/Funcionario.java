@@ -2,59 +2,58 @@ package fatec.poo.model;
 
 /**
  *
- * @author 0030481513020 - Guilherme Pereira de Souza Del Rio Bertola
+ * @author felip
  */
-    //classe abstrada funcionario
+//Classe abstrata ou Superclasse, apresenta os metodos e atributos que serão comuns às demais subclasses
 public abstract class Funcionario {
 
-    //declaração dos atributos semelhantes a todos os tipo de funcionarios
     private int Registro;
     private String Nome;
     private String DtAdmissao;
     private String Cargo;
 
-    public void setCargo(String Cargo) {
-        this.Cargo = Cargo;
-    }
-
-    public int getRegistro() {
-        return Registro;
-    }
-
-    public String getNome() {
-        return Nome;
-    }
-
-    public String getDtAdmissao() {
-        return DtAdmissao;
-    }
-
-    public String getCargo() {
-        return Cargo;
-    }
-
-    //construtor de funcionario
+    //Metodo construtor do funcionário
     public Funcionario(int r, String n, String dta) {
         Registro = r;
         Nome = n;
         DtAdmissao = dta;
-      
     }
 
-    //Abstração de calculo do salario bruto (assinatura), se alterará conforme a subclasse
+    //Metodo abstrato que será comum às demais subclasses, porém, terão implementações diferentes(Polimosfismo)
     abstract public double calcSalBruto();
+    
+    //Set do cargo, 
+    public void setCargo(String c) {
+        Cargo = c;
+    }
 
-    // calculo do desconto do salario encima do bruto
+    //Calculo do desconto do salário dos funcionários
     public double calcDesconto() {
         double Desconto;
         Desconto = 0.10 * calcSalBruto();
         return (Desconto);
     }
 
-    // calculo do salario liquido, utilizando o salrio bruto e o desconto
+    //Calculo do salario liquido, usando como base o salario bruto e o desconto
     public double calcSalLiquido() {
         double SalLiq;
         SalLiq = calcSalBruto() - calcDesconto();
         return (SalLiq);
     }
-}
+      
+    public int getRegistro() {
+        return Registro;
+    }
+    
+    public String getCargo() {
+        return Cargo;
+    }
+    
+    public String getNome() {
+        return Nome;
+    }
+    
+    public String getDtAdimissao() {
+        return DtAdmissao;
+    }
+}//Fim da classe funcionario

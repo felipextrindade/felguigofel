@@ -1,62 +1,71 @@
+
 package fatec.poo.model;
 
 /**
  *
- * @author 0030481513020
+ * @author felip
  */
 public class FuncionarioComissionado extends Funcionario {
+    private double SalBase;
+    private double TaxaComissao;
+    private double TotalVendas;
 
-    private double salBase = 0;
-    private double taxaComissao;
-    private double totalVendas = 0;
-
-    public FuncionarioComissionado(int r, String n, String dta, double Com) {
+    public FuncionarioComissionado(int r, String n, String dta, double tc) {
         super(r, n, dta);
-        taxaComissao = (Com / 100);
-    }
-
-    public double getTaxaComissao() {
-        return taxaComissao;
-    }
-
-    public double getTotalVendas() {
-        return totalVendas;
+        TaxaComissao = tc;
+        TotalVendas = 0;
     }
 
     public double getSalBase() {
-        return salBase;
+        return SalBase;
     }
 
-    public void setSalBase(double salBase) {
-        this.salBase = salBase;
+    public void setSalBase(double sb) {
+        SalBase = sb;
     }
 
-    public void addVendas(double venda) {
-        totalVendas += venda;
+    public double getTaxaComissao() {
+        return TaxaComissao;
     }
 
-    public double calcGratificacao() {
-        double gratificacao = 0;
-        if (totalVendas > 5000) {
-            if (totalVendas > 10000) {
-                gratificacao = 0.05 * totalVendas;
-            } else {
-                gratificacao = 0.035 * totalVendas;
-            }
-        }
-        return gratificacao;
+    public double getTotalVendas() {
+        return TotalVendas;
     }
-
+    
     public double calcSalBruto() {
-        double salBruto = 0;
-        salBruto = salBase + (taxaComissao * totalVendas);
-        return salBruto;
+        return(SalBase + (getTotalVendas() * (getTaxaComissao()/100)));
     }
-
-    public double calcSalLiquido() {
-        double salLiquido;
-        salLiquido = calcSalBruto() - calcDesconto() + calcGratificacao();
-        return salLiquido;
+    
+    public double calcGratificacao() {
+        double Gratificacao = 0;
+        if (TotalVendas > 10000)
+            Gratificacao = 0.05 * calcSalBruto();
+        else if (TotalVendas <= 5000)
+            Gratificacao = 0;
+        else
+            Gratificacao = 0.035 * calcSalBruto();
+        return(Gratificacao);
     }
-
+    
+    public double calcPorcentGrat() {
+        double Porcentagem = 0;
+        if (TotalVendas > 10000)
+            Porcentagem = 5;
+        else if (TotalVendas <= 5000)
+            Porcentagem = 0;
+        else
+            Porcentagem = 3.5;
+        return(Porcentagem);
+    }
+    
+    public void addVendas(double vendas) {
+        TotalVendas =+ vendas;
+    }
+    
+    public double calcSalLiq() {
+        return(super.calcSalLiquido() + calcGratificacao());
+    }
+    
+    
+    
 }

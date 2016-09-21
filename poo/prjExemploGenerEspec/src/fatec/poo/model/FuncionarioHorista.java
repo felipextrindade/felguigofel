@@ -2,39 +2,43 @@ package fatec.poo.model;
 
 /**
  *
- * @author 0030481513020 - Guilherme Pereira de Souza Del Rio Bertola
+ * @author felip
  */
+//Criação da subclasse Funcionario Horista, que herda tudo da classe Funcionario
 public class FuncionarioHorista extends Funcionario {
 
-    //declaração dos atributos especificos do funcionario horista
     private double ValHorTrab;
     private int QtdeHorTrab;
 
-    // chamada ao método construtor da superclasse
+    //Metodo construtor de Funcionario Horista
     public FuncionarioHorista(int r, String n, String dta, double vht) {
-        super(r, n, dta);
+        super(r, n, dta); //Chamada do metodo construtor da superclasse Funcionario
         ValHorTrab = vht;
     }
 
-    //receber a quantidade de Horas trabalhadas para o calculo de salario bruto
+    //Set das horas trabalhadas
     public void apontarHoras(int qht) {
         QtdeHorTrab = qht;
     }
 
-    //Calculo do salario bruto especifico para o funcionario horista (polimorfismo)
+    //Metodo de calculo do salario bruto, implementado para a subclass Funcionario Horista
     public double calcSalBruto() {
         double SalBruto;
         SalBruto = ValHorTrab * QtdeHorTrab;
         return (SalBruto);
     }
-
-    //calculo da gratificação - 7.5% do salario bruto
+    
     public double calcGratificacao() {
-        return (calcSalBruto() * 0.075);
+        double Gratificacao;
+        Gratificacao = calcSalBruto() * 0.075;
+        return(Gratificacao);
     }
-
-    //caculo do salario liquido com gratificação utilizando o calcSalLiquido da super classe funcionario
+    
+    //Implementação do polimorfismo, do metodo calSalLiq, já criado na Superclasse Funcionario, porém, na subclasse
+    //Funcionario Horista esse metodo deve executar de outra forma
     public double calcSalLiquido() {
-        return (super.calcSalLiquido() + calcGratificacao());
+        double SalLiq;
+        SalLiq = super.calcSalLiquido() + calcGratificacao();
+        return (SalLiq);
     }
-}
+}//Fim da classe Funcionario Horista

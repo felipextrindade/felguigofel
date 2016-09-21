@@ -1,4 +1,5 @@
 
+//Importação dos pacotes
 import fatec.poo.model.FuncionarioComissionado;
 import fatec.poo.model.FuncionarioHorista;
 import fatec.poo.model.FuncionarioMensalista;
@@ -6,61 +7,58 @@ import java.text.DecimalFormat;
 
 /**
  *
- * @author 0030481513020
+ * @author felip
  */
 public class Aplic1 {
 
     public static void main(String[] args) {
-        //instanciação da classe de formatação
+        //Instanciação e construção do objeto da classe DecimalFormat, numeros terão 2 casas depois da virgula,
+        //e se não existir numeros a esquerda do zero da virgula, serão adicionados espaços.
         DecimalFormat formato = new DecimalFormat("#,##0.00");
-        //instanciando e inicializando um funcionario horista
-        FuncionarioHorista funcHor = new FuncionarioHorista(1010, "Pedro Silveira", "14/05/1978", 15.80);
-        //Setando a quantidade de horas trabalhadas
-        funcHor.setCargo("gerente");
-        funcHor.apontarHoras(90);
-        //exibindo o nome, data, cargo, salario bruto , desconto e o salario liquido
-        System.out.println("Nome             =>  " + funcHor.getNome());
-        System.out.println("Registro         =>  " + funcHor.getRegistro());
-        System.out.println("Data de Adimissão=>  " + funcHor.getDtAdmissao());
-        System.out.println("Cargo            =>  " + funcHor.getCargo());
-        System.out.println("Salario Bruto    =>  " + formato.format(funcHor.calcSalBruto()));
-        System.out.println("Desconto         =>  " + formato.format(funcHor.calcDesconto()));
-        System.out.println("Gartificação     =>  " + formato.format(funcHor.calcGratificacao()));
-        System.out.println("Salario Liquido  =>  " + formato.format(funcHor.calcSalLiquido()) + "\n");
-
-        //instanciando e inicializando um funcionario Mensalista
-        FuncionarioMensalista funcMen = new FuncionarioMensalista(1011, "Jair Souza", "14/05/1988", 700);
-        //Setando a quantidade de salarios ganhos
-        funcMen.apontarSalarios(3);
-        funcMen.setCargo("Estagiario");
-        //exibindo o nome, data, cargo, salario bruto , desconto e o salario liquido
-        System.out.println("Nome             =>  " + funcMen.getNome());
-        System.out.println("Registro         =>  " + funcMen.getRegistro());
-        System.out.println("Data de Adimissão=>  " + funcMen.getDtAdmissao());
-        System.out.println("Cargo            =>  " + funcMen.getCargo());
-        System.out.println("Salario Bruto    =>  " + formato.format(funcMen.calcSalBruto()));
-        System.out.println("Desconto         =>  " + formato.format(funcMen.calcDesconto()));
-        System.out.println("Salario Liquido  =>  " + formato.format(funcMen.calcSalLiquido())+"\n");
+        //Instanciação e construção do objeto funchor da subclasse FuncionarioHorista
+        FuncionarioHorista funchor = new FuncionarioHorista(1010, "Pedro Silveira", "14/05/1978", 15.80);
+        funchor.setCargo("Programador");//Set do cargo, se encontra na Superclasse, evitando grandes alterações em outros arquivos
+        FuncionarioMensalista funmens = new FuncionarioMensalista(1020, "Felipe Siqueira", "28/03/1979", 1.5);
+        funmens.setCargo("Estagiário");
+        FuncionarioComissionado funcomis = new FuncionarioComissionado(1030, "Guigo", "31/02/2007", 3);
+        funcomis.setCargo("Chefe");
+        funcomis.setSalBase(700);
+        //Set das horas trabalhadas
+        funchor.apontarHoras(90);
+        funmens.apontarValSalMin(900);
+        funcomis.addVendas(20000);
         
-        FuncionarioComissionado funcCom = new FuncionarioComissionado(1012, "Claudio Souza", "11/05/1998", 5);
+        //Chamada dos metodos da subclasse Funcionario Horista
+        System.out.println("Funcionario Horista: " + funchor.getNome());
+        System.out.println("Registro: " + funchor.getRegistro());
+        System.out.println("Cargo: " + funchor.getCargo());
+        System.out.println("Data de Adimissao: " + funchor.getDtAdimissao());
+        System.out.println("Salario Bruto: " + formato.format(funchor.calcSalBruto()));
+        System.out.println("Desconto: " + formato.format(funchor.calcDesconto()));
+        System.out.println("Gratificacao: " + formato.format(funchor.calcGratificacao()));
+        System.out.println("Salario Liquido: " + formato.format(funchor.calcSalLiquido()));
+    
+        //Chamada dos metodos da subclasse Funcionario Mensalista
+        System.out.println("\nFuncionario Mensalista: " + funmens.getNome());
+        System.out.println("Registro: " + funmens.getRegistro());
+        System.out.println("Cargo: " + funmens.getCargo());
+        System.out.println("Data de Adimissao: " + funmens.getDtAdimissao());
+        System.out.println("Salario Bruto: " + formato.format(funmens.calcSalBruto()));
+        System.out.println("Desconto: " + formato.format(funmens.calcDesconto()));
+        System.out.println("Salario Liquido: " + formato.format(funmens.calcSalLiquido()));
         
-        //Setando a quantidade de salarios ganhos
-        funcCom.setSalBase(500);
-        funcCom.setCargo("Cozinheiro");
-        funcCom.addVendas(500);
-        funcCom.addVendas(6745.25);
-        //exibindo o nome, data, cargo, salario bruto , desconto e o salario liquido
-        System.out.println("Nome             =>  " + funcCom.getNome());
-        System.out.println("Registro         =>  " + funcCom.getRegistro());
-        System.out.println("Data de Adimissão=>  " + funcCom.getDtAdmissao());
-        System.out.println("Cargo            =>  " + funcCom.getCargo());
-        System.out.println("Salario Base     =>  " + formato.format(funcCom.getSalBase()));
-        System.out.println("Comissao         =>  " + formato.format((funcCom.getTaxaComissao()*100))+"%");
-        System.out.println("Salario Bruto    =>  " + formato.format(funcCom.calcSalBruto()));
-        System.out.println("Gratificaçâo     =>  " + formato.format(funcCom.calcGratificacao()));
-        System.out.println("Desconto         =>  " + formato.format(funcCom.calcDesconto()));
-        System.out.println("Salario Liquido  =>  " + formato.format(funcCom.calcSalLiquido()));
-
+        //Chamada dos metodos da subclasse Funcionario Comissionado
+        System.out.println("\nFuncionario Comissionado: " + funcomis.getNome());
+        System.out.println("Registro: " + funcomis.getRegistro());
+        System.out.println("Cargo: " + funcomis.getCargo());
+        System.out.println("Data de Adimissao: " + funcomis.getDtAdimissao());
+        System.out.println("Salario Bruto: " + formato.format(funcomis.calcSalBruto()));
+        System.out.println("Salario Base: " + formato.format(funcomis.getSalBase()));
+        System.out.println("Taxa de Comissao: " + funcomis.getTaxaComissao() + "%");
+        System.out.println("Desconto: " + formato.format(funcomis.calcDesconto()));
+        System.out.println("Total de Vendas: " + formato.format(funcomis.getTotalVendas()));
+        System.out.println("Gratificacao: " + formato.format(funcomis.calcGratificacao()));
+        System.out.println("Porcentagem: " + funcomis.calcPorcentGrat()+ "%");
+        System.out.println("Salario Liquido: " + formato.format(funcomis.calcSalLiq()));
     }
-
 }
